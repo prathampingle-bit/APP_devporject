@@ -1,11 +1,38 @@
 # Room Manager App (Frontend-only)
+room_manager_full_project/
+│
+├── pubspec.yaml
+├── README.md
+│
+└── lib/
+    ├── main.dart
+    ├── app.dart
+    │
+    ├── core/
+    │   ├── models.dart
+    │   ├── mock_api.dart
+    │   └── providers.dart
+    │
+    ├── features/
+    │   ├── auth/
+    │   │   └── login_page.dart
+    │   │
+    │   ├── home/
+    │   │   └── home_page.dart
+    │   │
+    │   ├── rooms/
+    │   │   ├── room_list_page.dart
+    │   │   └── room_detail_page.dart
+    │   │
+    │   ├── live_session/
+    │   │   └── nfc_stub.dart
+    │   │
+    │   ├── booking/
+    │   │   └── booking_page.dart
+    │   │
+    │   └── reports/
+    │       └── reports_page.dart
+    │
+    └── (ready for more future modules)
 
-This is a frontend-only Flutter scaffold implementing the Room Management app UI with a mock API.
-Run:
 
-1. `flutter pub get`
-2. `flutter run`
-
-Notes:
-- NFC is stubbed (`NfcStub`). Replace with `nfc_manager` for real devices.
-- Replace `mock_api.dart` with real API client (Dio) when backend is available.
