@@ -162,11 +162,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             if (user != null) {
                               ref.read(authProvider.notifier).state = user;
                               // ignore: use_build_context_synchronously
-<<<<<<< HEAD
-                              Navigator.of(context).pushReplacementNamed('/');
-=======
                               context.go('/');
->>>>>>> d4cd2e9 (nfc push)
                             } else {
                               // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context).showSnackBar(
