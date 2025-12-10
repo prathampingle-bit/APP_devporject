@@ -5,6 +5,7 @@ import 'features/auth/login_page.dart';
 import 'features/home/home_page.dart';
 import 'features/rooms/room_list_page.dart';
 import 'features/rooms/room_detail_page.dart';
+import 'features/nfc/nfc_verification_page.dart';
 
 final _router = GoRouter(
   initialLocation: '/login',
@@ -14,7 +15,8 @@ final _router = GoRouter(
     GoRoute(path: '/rooms', builder: (c, s) => const RoomListPage()),
     GoRoute(
         path: '/rooms/:id',
-        builder: (c, s) => RoomDetailPage(roomId: s.location.split('/').last)),
+        builder: (c, s) => RoomDetailPage(roomId: s.pathParameters['id']!)),
+    GoRoute(path: '/nfc', builder: (c, s) => const NfcVerificationPage()),
   ],
 );
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../../core/providers.dart';
 import '../../core/mock_api.dart';
 
@@ -161,7 +162,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             if (user != null) {
                               ref.read(authProvider.notifier).state = user;
                               // ignore: use_build_context_synchronously
+<<<<<<< HEAD
                               Navigator.of(context).pushReplacementNamed('/');
+=======
+                              context.go('/');
+>>>>>>> d4cd2e9 (nfc push)
                             } else {
                               // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context).showSnackBar(
