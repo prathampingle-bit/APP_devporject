@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/providers.dart';
 import '../../core/mock_api.dart';
 import '../../core/models.dart';
+import '../../core/app_drawer.dart';
 
 class RoomDetailPage extends ConsumerWidget {
   final String roomId;
@@ -15,6 +16,7 @@ class RoomDetailPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Room Details')),
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
         child: Column(

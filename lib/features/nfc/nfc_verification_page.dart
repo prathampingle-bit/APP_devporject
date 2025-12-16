@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:nfc_manager/nfc_manager.dart';
+import '../../core/app_drawer.dart';
 
 class NfcVerificationPage extends StatefulWidget {
   const NfcVerificationPage({Key? key}) : super(key: key);
@@ -145,6 +146,7 @@ class _NfcVerificationPageState extends State<NfcVerificationPage> {
         backgroundColor: Colors.indigo,
         elevation: 0,
       ),
+      drawer: const AppDrawer(),
       backgroundColor: Colors.grey[100],
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -207,6 +209,7 @@ class _NfcVerificationPageState extends State<NfcVerificationPage> {
           ],
         ),
       ),
+      bottomNavigationBar: NavigationWrapper.buildBottomNavBar(context, 2),
     );
   }
 
