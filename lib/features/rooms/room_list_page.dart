@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/providers.dart';
+import '../../core/app_drawer.dart';
 
 class RoomListPage extends ConsumerWidget {
   const RoomListPage({super.key});
@@ -11,6 +12,7 @@ class RoomListPage extends ConsumerWidget {
     final roomsAsync = ref.watch(roomsProvider);
     return Scaffold(
       appBar: AppBar(title: const Text('Rooms')),
+      drawer: const AppDrawer(),
       body: roomsAsync.when(
         data: (rooms) => ListView.builder(
           itemCount: rooms.length,
