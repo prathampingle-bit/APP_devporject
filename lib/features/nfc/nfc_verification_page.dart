@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:nfc_manager/nfc_manager.dart';
 import '../../core/app_drawer.dart';
+import '../../core/navigation_wrapper.dart';
 
 class NfcVerificationPage extends StatefulWidget {
   const NfcVerificationPage({Key? key}) : super(key: key);

@@ -8,7 +8,8 @@ class AppDrawer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(authProvider);
+    final authState = ref.watch(authControllerProvider);
+    final user = authState.user;
     final currentPath =
         GoRouter.of(context).routeInformationProvider.value.uri.path;
 
@@ -79,7 +80,7 @@ class AppDrawer extends ConsumerWidget {
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
             onTap: () {
-              ref.read(authProvider.notifier).state = null;
+              ref.read(authControllerProvider.notifier).logout();
               Navigator.pop(context);
               context.go('/login');
             },

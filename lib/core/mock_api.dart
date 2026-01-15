@@ -145,6 +145,11 @@ class MockApi {
     await Future.delayed(const Duration(milliseconds: 200));
     return _sessions.values.where((s) => s.status == 'ACTIVE').toList();
   }
+
+  Future<User?> getUserById(String userId) async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    return _users[userId];
+  }
 }
 
 final mockApi = MockApi();

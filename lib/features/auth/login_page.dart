@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/providers.dart';
-import '../../core/mock_api.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -15,6 +14,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   final _emailController = TextEditingController(text: 'ramesh@inst.edu');
   final _passController = TextEditingController(text: 'password');
   bool _loading = false;
+  String? _error;
 
   @override
   void dispose() {
@@ -154,20 +154,29 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     onPressed: _loading
                         ? null
                         : () async {
-                            setState(() => _loading = true);
-                            final user = await mockApi.login(
-                                _emailController.text, _passController.text);
+                            final email = _emailController.text.trim();
+                            final pass = _passController.text.trim();
+                            if (email.isEmpty || pass.isEmpty) {
+                              setState(
+                                  () => _error = 'Email and password required');
+                              return;
+                            }
+                            setState(() {
+                              _loading = true;
+                              _error = null;
+                            });
+
+                            final success = await ref
+                                .read(authControllerProvider.notifier)
+                                .login(email, pass);
                             if (!mounted) return;
                             setState(() => _loading = false);
-                            if (user != null) {
-                              ref.read(authProvider.notifier).state = user;
-                              // ignore: use_build_context_synchronously
+                            if (success) {
                               context.go('/');
                             } else {
-                              // ignore: use_build_context_synchronously
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('Login failed')));
+                              setState(() => _error =
+                                  ref.read(authControllerProvider).error ??
+                                      'Login failed');
                             }
                           },
                     child: _loading
@@ -187,6 +196,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                   ),
                 ),
+                if (_error != null) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    _error!,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ]
               ],
             ),
           ),
